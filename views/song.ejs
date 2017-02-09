@@ -1,12 +1,20 @@
 <% include partials/header %>
  <h1><%=song.title%></h1>
  <hr/>
- Album : <%=song.album%>
- Artist : <%=song.artist%>
- <% if (song.year) { %>
- Year : <%=song.year%>
- <% } %>
- <% if (song.bpm) { %>
- BPM : <%=song.bpm%>
- <% } %>
+<p>
+    Album : <%=song.album%>
+</p>
+<p>
+    Artist : <%=song.artist%>
+</p>
+<% if (song.year) { %>
+    <p>
+        Year : <%=song.year%>
+    </p>
+<% } %>
+<% if (song.bpm) { %>
+    <p>
+        BPM : <%=song.bpm%>
+    </p>
+<% } %>
 <% include partials/footer %>
