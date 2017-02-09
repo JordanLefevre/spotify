@@ -27,11 +27,7 @@ exports.delete = () => {
 };
 
 exports.findOne = (query = {}) => {
-    return db.Songs.findAll({
-        where: {
-            id: query.id
-        }
-    });
+    return db.Songs.findById(query.id);
 };
 
 exports.deleteOne = (query = {}) => {
