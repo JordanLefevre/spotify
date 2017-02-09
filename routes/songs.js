@@ -45,7 +45,7 @@ router.get('/:id', (req, res, next) => {
     if (!req.accepts('text/html') && !req.accepts('application/json')) {
         return res.status(406).send({err: 'Not valid type for asked resource'});
     }
-    SongService.findOneByQuery({id: req.params.id})
+    SongService.findOne({id: req.params.id})
     .then(song => {
         if (!song) {
             return next(new APIError(404, `id ${req.params.id} not found`));
