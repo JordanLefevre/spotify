@@ -3,8 +3,8 @@
 module.exports = (sequelize, DataTypes) => {
     return sequelize.define('Songs', {
         title: {
-        	type: DataTypes.STRING,
-        	validate: {notEmpty: {msg: "-> Missing title"}}
+            type: DataTypes.STRING,
+            validate: {notEmpty: {msg: "-> Missing title"}}
         },
         album: {
             type: DataTypes.STRING,
@@ -14,11 +14,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             validate: {notEmpty: {msg: "-> Missing title"}}
         },
-        year: {
-            type: DataTypes.INTEGER
-        },
-        bpm: {
-            type: DataTypes.INTEGER
-        }
+        year: { type: DataTypes.INTEGER },
+        bpm: { type: DataTypes.INTEGER }
     });
 };
