@@ -41,26 +41,35 @@ router.delete('/', (req, res) => {
     ;
 });
 
-router.get('/:id', (req, res) => {
-    SongService.findOne(req.params)
+router.get('/:id', (req, res, next) => {
+    if (!req.accepts('text/html') && !req.accepts('application/json')) {
+        return res.status(406).send({err: 'Not valid type for asked resource'});
+    }
+    SongService.findOneByQuery({id: req.params.id})
     .then(song => {
-        res.status(200).send(song);
+        if (!song) {
+            return next(new APIError(404, `id ${req.params.id} not found`));
+        }
+        if (req.accepts('text/html')) {
+            return res.render('song', {song: song});
+        }
+        if (req.accepts('application/json')) {
+            return res.status(200).send(song);
+        }
     })
-    .catch(err => {
-        res.status(500).send(err);
-    })
+    .catch(err => next)
     ;
 });
 
 /*router.put('/:id', (req, res) => {
-    SongService.edit(req.body, req.params)
-    .then(() => {
-        res.status(200).send('Song edited');
-    })
-    .catch(err => {
-        res.status(500).send(err);
-    })
-    ;
+SongService.edit(req.body, req.params)
+.then(() => {
+res.status(200).send('Song edited');
+})
+.catch(err => {
+res.status(500).send(err);
+})
+;
 })*/
 
 
